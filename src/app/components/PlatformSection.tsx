@@ -4,7 +4,7 @@ import {
   Layers, Play, Square, FileText, ChevronUp, Home, 
   MessageCircle, Heart, ArrowRight, ArrowLeft
 } from "lucide-react";
-import { PhoneMockup } from "./PhoneMockup";
+import { CentralPhone } from "./CentralPhone";
 
 export function PlatformSection() {
   return (
@@ -201,9 +201,7 @@ export function PlatformSection() {
           transition={{ duration: 0.8 }}
           className="z-30 flex items-center justify-center shrink-0"
         >
-          <div className="w-[320px] h-[682px] relative shadow-[0px_40px_100px_0px_rgba(246,112,17,0.3)] rounded-[48px]">
-            <PhoneMockup />
-          </div>
+          <CentralPhone />
         </motion.div>
 
         {/* Mid Right Phone (Tickr/Timer) */}

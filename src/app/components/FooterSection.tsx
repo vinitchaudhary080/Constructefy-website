@@ -2,8 +2,9 @@ import { motion } from "motion/react";
 import { Apple, Smartphone } from "lucide-react";
 import { Link } from "react-router";
 import footerBackground from "@/assets/Footer background.png";
-import footerMockup from "@/assets/footermockups.png";
-import svgPaths from "../../imports/svg-ye5cnnbbxh";
+import footerSvgPaths from "../../imports/svg-ye5cnnbbxh";
+import navbarSvgPaths from "../../imports/svg-54q0yju2ut";
+import { CentralPhone } from "./CentralPhone";
 
 const productLinks = [
   { label: "Features", to: "/solutions" },
@@ -38,14 +39,17 @@ const legalLinks = [
 function FooterLogo() {
   return (
     <div className="flex items-center gap-3">
-      <svg width="32" height="32" viewBox="0 0 29 28" fill="none" className="shrink-0">
-        <path d={svgPaths.p15c64480} fill="#F67011" />
-        <path d={svgPaths.p2f7b4f00} fill="#14CB49" />
-        <path d={svgPaths.p3d7e6500} fill="#FF9F2E" />
-        <path d={svgPaths.p147b1c80} fill="#F84241" />
-        <path d={svgPaths.p2ebded80} fill="#178FFF" />
-      </svg>
-      <span className="text-[28px] font-bold tracking-[-0.03em] text-white">
+      <div className="relative h-8 w-8 shrink-0">
+        <svg className="h-full w-full" viewBox="0 0 33.1896 32.2149" fill="none">
+          <path d={navbarSvgPaths.p23108400} fill="#F67011" />
+          <path d={navbarSvgPaths.p6258500} fill="#14CB49" />
+          <path d={navbarSvgPaths.p3b97e880} fill="#FF9F2E" />
+          <path d={navbarSvgPaths.p2060b940} fill="#F84241" />
+          <path d={navbarSvgPaths.p35ec1080} fill="#178FFF" />
+          <path d={navbarSvgPaths.p35ec1080} fill="black" fillOpacity="0.2" />
+        </svg>
+      </div>
+      <span className="text-[28px] font-bold tracking-tight text-white">
         constructefy
       </span>
     </div>
@@ -79,7 +83,7 @@ function FooterLinkGroup({ title, links }: FooterLinkGroupProps) {
 export function FooterSection() {
   return (
     <footer className="relative overflow-hidden bg-[#17161d] font-['DM_Sans']">
-      <section className="relative overflow-hidden bg-[#ff6f07] px-4 pb-[170px] pt-16 sm:pb-[210px] sm:pt-18 lg:pb-[330px] lg:pt-24">
+      <section className="relative overflow-hidden bg-[#ff6f07] px-4 pb-[92px] pt-16 sm:pb-[118px] sm:pt-18 lg:pb-[185px] lg:pt-24">
         <img
           src={footerBackground}
           alt=""
@@ -122,11 +126,9 @@ export function FooterSection() {
             transition={{ duration: 0.6, delay: 0.08 }}
             className="relative order-3 mx-auto flex w-full max-w-[470px] items-start justify-center lg:order-none lg:h-[760px]"
           >
-            <img
-              src={footerMockup}
-              alt="Constructefy mobile app preview"
-              className="h-auto w-[320px] max-w-full object-contain drop-shadow-[0_18px_35px_rgba(0,0,0,0.35)] sm:w-[360px] lg:w-full lg:max-w-[600px]"
-            />
+            <div className="flex w-full justify-center pt-2 sm:pt-4 lg:pt-0">
+              <CentralPhone />
+            </div>
           </motion.div>
 
           <motion.div
@@ -179,11 +181,11 @@ export function FooterSection() {
 
                 <div className="absolute left-1/2 top-1/2 flex h-[60px] w-[60px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[14px] bg-[#17161d] shadow-[0_10px_24px_rgba(0,0,0,0.2)]">
                   <svg width="34" height="34" viewBox="0 0 29 28" fill="none">
-                    <path d={svgPaths.p15c64480} fill="#F67011" />
-                    <path d={svgPaths.p2f7b4f00} fill="#14CB49" />
-                    <path d={svgPaths.p3d7e6500} fill="#FF9F2E" />
-                    <path d={svgPaths.p147b1c80} fill="#F84241" />
-                    <path d={svgPaths.p2ebded80} fill="#178FFF" />
+                    <path d={footerSvgPaths.p15c64480} fill="#F67011" />
+                    <path d={footerSvgPaths.p2f7b4f00} fill="#14CB49" />
+                    <path d={footerSvgPaths.p3d7e6500} fill="#FF9F2E" />
+                    <path d={footerSvgPaths.p147b1c80} fill="#F84241" />
+                    <path d={footerSvgPaths.p2ebded80} fill="#178FFF" />
                   </svg>
                 </div>
               </div>
@@ -192,9 +194,9 @@ export function FooterSection() {
         </div>
       </section>
 
-      <section className="relative -mt-[55px] bg-[#17161d] px-4 pb-20 pt-[90px] sm:-mt-[75px] sm:pt-[110px] lg:-mt-[150px] lg:pt-[170px]">
+      <section className="relative -mt-[92px] bg-[#17161d] px-4 pb-20 pt-[48px] sm:-mt-[126px] sm:pt-[58px] lg:-mt-[230px] lg:pt-[76px]">
         <div className="relative z-10 mx-auto max-w-[1180px]">
-          <div className="grid gap-12 pb-16 pt-6 lg:grid-cols-[1.2fr_0.9fr] lg:gap-24 lg:pt-10">
+          <div className="grid gap-12 pb-16 pt-1 lg:grid-cols-[1.2fr_0.9fr] lg:gap-24 lg:pt-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

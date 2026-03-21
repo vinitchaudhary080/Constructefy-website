@@ -4,7 +4,7 @@ import { FeatureSection } from "../components/FeatureSection";
 import { ManagerSection } from "../components/ManagerSection";
 import { WorkerSection } from "../components/WorkerSection";
 import { PlatformSection } from "../components/PlatformSection";
-import { HowItWorksSection } from "../components/HowItWorksSection";
+import { HomeWorkflowSection } from "../components/HomeWorkflowSection";
 import { TestimonialsSection } from "../components/TestimonialsSection";
 import { FAQSection } from "../components/FAQSection";
 import imgBgImage from "@/app/assets/ceaab6cd6d150b3d9d543f8e74d34447f7edc7af.png";
@@ -53,7 +53,7 @@ export default function HomePage() {
       <ManagerSection />
       <WorkerSection />
       <PlatformSection />
-      <HowItWorksSection />
+      <HomeWorkflowSection />
       <TestimonialsSection />
       <FAQSection />
     </>

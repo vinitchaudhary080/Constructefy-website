@@ -89,13 +89,14 @@ export function Navbar() {
   } as const;
   
   return (
-    <motion.div
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative z-50 border-b border-white/10"
-    >
-      <nav className="flex w-full items-center justify-between px-6 py-6 md:px-12">
+    <>
+      <div className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#131515]/88 backdrop-blur-xl supports-[backdrop-filter]:bg-[#131515]/72">
+        <motion.nav
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex w-full items-center justify-between px-6 py-6 md:px-12"
+        >
         <Link to="/" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
           <div className="relative w-8 h-8">
             <svg className="w-full h-full" viewBox="0 0 33.1896 32.2149" fill="none">
@@ -149,24 +150,22 @@ export function Navbar() {
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
-      </nav>
+        </motion.nav>
+      </div>
 
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             key="mobile-menu"
             id="mobile-navigation"
-            className="fixed inset-0 z-[60] lg:hidden"
+            className="fixed inset-0 z-[80] lg:hidden"
             initial="hidden"
             animate="visible"
             exit="exit"
             variants={overlayVariants}
           >
-            <motion.button
-              type="button"
-              className="absolute inset-0 bg-[#f5f5f7]/96"
-              aria-label="Close mobile menu"
-              onClick={() => setMobileOpen(false)}
+            <motion.div
+              className="absolute inset-0 bg-[#f5f5f7]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -190,7 +189,6 @@ export function Navbar() {
 
               <motion.div
                 className="mt-3 flex flex-col"
-                variants={overlayVariants}
               >
                 {navLinks.map((link) => {
                   const isActive =
@@ -228,10 +226,17 @@ export function Navbar() {
                   </Link>
                 </div>
               </motion.div>
+
+              <button
+                type="button"
+                className="absolute inset-0 -z-10"
+                aria-label="Close mobile menu"
+                onClick={() => setMobileOpen(false)}
+              />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </>
   );
 }
