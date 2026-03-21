@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import svgPaths from "../../imports/svg-54q0yju2ut";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router";
@@ -9,14 +9,84 @@ export function Navbar() {
   const isContactPage = ["/contact", "/support", "/help-center", "/support-help-center"].includes(location.pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const navLinks = [
-    { label: "Product", to: "/solutions" },
-    { label: "Solutions", to: "/solutions" },
-    { label: "How It Works", to: "/how-it-works" },
-    { label: "Pricing", to: "/pricing" },
-    { label: "Blog", to: "/blog" },
-    { label: "Contact", to: "/contact" },
-  ];
+  const navLinks = useMemo(
+    () => [
+      { label: "Product", to: "/solutions" },
+      { label: "Solutions", to: "/solutions" },
+      { label: "How It Works", to: "/how-it-works" },
+      { label: "Pricing", to: "/pricing" },
+      { label: "Blog", to: "/blog" },
+      { label: "Contact", to: "/contact" },
+    ],
+    [],
+  );
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [mobileOpen]);
+
+  const overlayVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.22,
+        ease: [0.22, 1, 0.36, 1],
+        when: "beforeChildren",
+        staggerChildren: 0.045,
+        delayChildren: 0.06,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.16,
+        ease: [0.4, 0, 1, 1],
+        when: "afterChildren",
+        staggerChildren: 0.02,
+        staggerDirection: -1,
+      },
+    },
+  } as const;
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -10, filter: "blur(6px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] },
+    },
+    exit: {
+      opacity: 0,
+      y: -6,
+      filter: "blur(4px)",
+      transition: { duration: 0.14, ease: [0.4, 0, 1, 1] },
+    },
+  } as const;
   
   return (
     <motion.div
@@ -73,45 +143,95 @@ export function Navbar() {
         <button
           className="lg:hidden text-white"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
           onClick={() => setMobileOpen((open) => !open)}
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </nav>
 
-      {mobileOpen && (
-        <div className="border-t border-white/10 bg-[#111214] px-6 py-5 lg:hidden">
-          <div className="flex flex-col gap-4 text-sm text-white/82">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.to}
-                onClick={() => setMobileOpen(false)}
-                className="rounded-xl px-3 py-2 transition-colors hover:bg-white/5"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            key="mobile-menu"
+            id="mobile-navigation"
+            className="fixed inset-0 z-[60] lg:hidden"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={overlayVariants}
+          >
+            <motion.button
+              type="button"
+              className="absolute inset-0 bg-[#f5f5f7]/96"
+              aria-label="Close mobile menu"
+              onClick={() => setMobileOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            />
 
-          <div className="mt-5 flex flex-col gap-3">
-            <Link
-              to="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="rounded-full border border-white/15 px-4 py-3 text-center text-sm font-medium text-white"
-            >
-              Book a demo
-            </Link>
-            <Link
-              to="/pricing"
-              onClick={() => setMobileOpen(false)}
-              className="rounded-full bg-white px-4 py-3 text-center text-sm font-medium text-black"
-            >
-              Buy Constructefy
-            </Link>
-          </div>
-        </div>
-      )}
+            <div className="relative flex h-full flex-col overflow-y-auto px-6 pb-10 pt-5">
+              <motion.div
+                variants={itemVariants}
+                className="flex items-center justify-end"
+              >
+                <button
+                  type="button"
+                  className="flex h-10 w-10 items-center justify-center rounded-full text-[#1d1d1f] transition-colors hover:bg-black/5"
+                  aria-label="Close menu"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <X className="h-5 w-5 stroke-[1.75]" />
+                </button>
+              </motion.div>
+
+              <motion.div
+                className="mt-3 flex flex-col"
+                variants={overlayVariants}
+              >
+                {navLinks.map((link) => {
+                  const isActive =
+                    link.to === "/contact"
+                      ? isContactPage
+                      : location.pathname === link.to;
+
+                  return (
+                    <motion.div key={link.label} variants={itemVariants}>
+                      <Link
+                        to={link.to}
+                        onClick={() => setMobileOpen(false)}
+                        className={`block py-2 text-[2.1rem] font-semibold leading-[1.16] tracking-[-0.03em] text-[#1d1d1f] transition-colors ${
+                          isActive ? "opacity-100" : "opacity-80 hover:opacity-100"
+                        }`}
+                        style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+
+              <motion.div
+                variants={itemVariants}
+                className="mt-auto border-t border-black/8 pt-6"
+              >
+                <div className="flex flex-col gap-3 text-sm text-[#1d1d1f]/72">
+                  <Link to="/contact" onClick={() => setMobileOpen(false)} className="w-fit">
+                    Book a demo
+                  </Link>
+                  <Link to="/pricing" onClick={() => setMobileOpen(false)} className="w-fit">
+                    Buy Constructefy
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
