@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { Check, X } from "lucide-react";
 import { useState } from "react";
 import imgRectangle40299 from "@/app/assets/439e715248d6c072b4e144bf39049ca171d38fe2.png";
 import imgFrame1984078902 from "@/app/assets/b52da504e3dd7ad970fbf0ea033d68b27a873f5c.png";
@@ -8,70 +7,86 @@ import svgPaths from "../../imports/svg-ye5cnnbbxh";
 import { TestimonialsSection } from "../components/TestimonialsSection";
 import { FAQSection } from "../components/FAQSection";
 
+type FeatureValue = boolean | string;
+
+type FeatureRow = {
+  enterprise: FeatureValue;
+  free: FeatureValue;
+  name: string;
+  pro: FeatureValue;
+};
+
+type FeatureGroup = {
+  rows: FeatureRow[];
+  title: string;
+};
+
+const FEATURE_GROUPS: FeatureGroup[] = [
+  {
+    title: "Workforce & Attendance",
+    rows: [
+      { name: "Worker app access", free: true, pro: true, enterprise: true },
+      { name: "QR-based onboarding", free: true, pro: true, enterprise: true },
+      { name: "Area-based clock-in", free: true, pro: true, enterprise: true },
+      { name: "Attendance tracking", free: true, pro: true, enterprise: true },
+      { name: "Workforce limits", free: "Up to 10", pro: "Up to 50", enterprise: "Up to 200" },
+    ],
+  },
+  {
+    title: "Planning & Execution",
+    rows: [
+      { name: "Plan upload & viewing", free: true, pro: true, enterprise: true },
+      { name: "Area definition", free: true, pro: true, enterprise: true },
+      { name: "Task management", free: false, pro: true, enterprise: true },
+      { name: "Issue reporting", free: false, pro: false, enterprise: true },
+      { name: "Photo-based proof", free: "Up to 10", pro: "Up to 50", enterprise: "Up to 200" },
+    ],
+  },
+  {
+    title: "Visibility & Insights",
+    rows: [
+      { name: "Live dashboards", free: true, pro: true, enterprise: true },
+      { name: "Productivity insights", free: true, pro: true, enterprise: true },
+      { name: "Risk & delay alerts", free: false, pro: false, enterprise: true },
+      { name: "AI insights", free: false, pro: true, enterprise: true },
+    ],
+  },
+  {
+    title: "Reports & Compliance",
+    rows: [
+      { name: "Standard reports", free: true, pro: true, enterprise: true },
+      { name: "Advanced reports", free: false, pro: false, enterprise: true },
+      { name: "Exportable reports", free: false, pro: true, enterprise: true },
+      { name: "Compliance-ready reports", free: false, pro: false, enterprise: true },
+      { name: "Custom reporting", free: false, pro: false, enterprise: true },
+    ],
+  },
+  {
+    title: "Security & Support",
+    rows: [
+      { name: "Secure cloud storage", free: true, pro: true, enterprise: true },
+      { name: "Role-based access", free: true, pro: true, enterprise: true },
+      { name: "Enterprise-grade security", free: false, pro: true, enterprise: true },
+      { name: "Dedicated onboarding", free: false, pro: false, enterprise: true },
+      { name: "Priority support", free: false, pro: false, enterprise: true },
+    ],
+  },
+];
+
+function renderFeatureValue(value: FeatureValue) {
+  if (value === true) {
+    return <span className="text-[24px] leading-none font-light text-[#f67011]">✓</span>;
+  }
+
+  if (value === false) {
+    return <span className="text-[28px] leading-none font-light text-[#5e5e5e]">–</span>;
+  }
+
+  return <span className="text-[15px] leading-[22px] text-[#d7d7d7]">{value}</span>;
+}
+
 export default function PricingPage() {
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annual'>('monthly');
-
-  const testimonials = [
-    {
-      text: "For the first time, we have clear visibility into who worked where and for how long. Time disputes have dropped significantly.",
-      name: "Ethan Miller",
-      role: "Operations Head, EPC Company",
-      avatar: "@/app/assets/7c099c24b314556510391c6f89bf13ae86ef4208.png",
-    },
-    {
-      text: "Audit-ready reports and on-site photo proof have made compliance and client reporting much easier for teams.",
-      name: "Ava Rodriguez",
-      role: "Senior Engineer, Real Estate Developer",
-      avatar: "@/app/assets/faa7c28468f622ca6432913bd1b338d851ee939e.png",
-    },
-    {
-      text: "Real-time tracking has dramatically improved our project management, allowing us to allocate resources more effectively.",
-      name: "Sophia Chen",
-      role: "Project Manager, Construction Firm",
-      avatar: "@/app/assets/818fa522f3c02b93a112715072de5246be375218.png",
-    },
-    {
-      text: "We have streamlined communication between teams, leading to increased efficiency in project execution.",
-      name: "Liam Johnson",
-      role: "Team Lead, Software Development",
-      avatar: "@/app/assets/cacb6081eac5d6dab43f57b4174221e6adc14554.png",
-    },
-    {
-      text: "The integration of automated alerts has minimized delays, ensuring projects stay on schedule.",
-      name: "Mia Smith",
-      role: "Product Owner, Tech Startup",
-      avatar: "@/app/assets/55005efb2c0a8148957acdca0762857e70adcdad.png",
-    },
-    {
-      text: "Enhanced collaboration tools have fostered a culture of innovation and creativity within our teams.",
-      name: "Noah Brown",
-      role: "Design Director, Marketing Agency",
-      avatar: "@/app/assets/5aced9fa5db548b1152229fa76dfe97d0de95c61.png",
-    },
-  ];
-
-  const faqs = [
-    {
-      question: "Who is Constructefy for?",
-      answer: "Constructefy is designed for construction companies, contractors, developers, and EPCs who need better visibility, control, and proof across one or multiple sites.",
-    },
-    {
-      question: "Is worker training required?",
-      answer: "No formal training is needed. The worker app is simple, intuitive, and built for quick on-site adoption with minimal guidance.",
-    },
-    {
-      question: "What features does Constructefy offer?",
-      answer: "Constructefy includes real-time reporting, project tracking, resource management, and compliance checks to streamline construction operations.",
-    },
-    {
-      question: "How does Constructefy ensure data security?",
-      answer: "Constructefy employs encryption, regular security audits, and user access controls to safeguard project data.",
-    },
-    {
-      question: "Can Constructefy integrate with other software?",
-      answer: "Yes, Constructefy can seamlessly integrate with various project management and accounting software to enhance workflow and data consistency.",
-    },
-  ];
 
   return (
     <div className="flex flex-col">
@@ -509,19 +524,19 @@ export default function PricingPage() {
       </section>
 
       {/* Feature Comparison Table */}
-      <section className="bg-[#16151a] py-16 md:py-24 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-black px-4 py-16 md:px-8 md:py-24 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-[1080px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16"
+            className="mb-12 md:mb-14 lg:mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
+            <h2 className="mb-3 text-[34px] font-medium leading-[1.02] tracking-[-0.04em] text-white md:text-[56px] lg:text-[60px]">
               Compare all features
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              See exactly what's included for workers vs. companies
+            <p className="max-w-[640px] text-[16px] leading-[1.45] text-[#b9b9b9] md:text-[17px]">
+              A detailed breakdown of what's included in each plan, so you can choose what fits your projects today-and scale later.
             </p>
           </motion.div>
 
@@ -529,49 +544,52 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="overflow-x-auto rounded-2xl border border-white/10"
+            className="overflow-x-auto"
           >
-            <table className="w-full min-w-[600px]">
-              <thead className="bg-white/5">
+            <table className="w-full min-w-[920px] border-collapse">
+              <thead>
                 <tr>
-                  <th className="text-left px-6 py-5 text-sm font-semibold text-white">Features</th>
-                  <th className="px-6 py-5 text-sm font-semibold text-white text-center">Workers</th>
-                  <th className="px-6 py-5 text-sm font-semibold text-white text-center bg-[#f67011]/10">Companies</th>
+                  <th className="w-[36%] px-0 pb-9 text-left" />
+                  <th className="w-[21.33%] px-5 pb-9 text-center">
+                    <div className="text-[18px] font-normal leading-[1.2] text-white">Free</div>
+                    <div className="mt-1 text-[15px] leading-[1.2] text-[#6f6f6f]">$0/month</div>
+                  </th>
+                  <th className="w-[21.33%] px-5 pb-9 text-center">
+                    <div className="text-[18px] font-normal leading-[1.2] text-white">Pro</div>
+                    <div className="mt-1 text-[15px] leading-[1.2] text-[#6f6f6f]">$15/month</div>
+                  </th>
+                  <th className="w-[21.33%] px-5 pb-9 text-center">
+                    <div className="text-[18px] font-normal leading-[1.2] text-white">Enterprise</div>
+                    <div className="mt-1 text-[15px] leading-[1.2] text-[#6f6f6f]">Custom</div>
+                  </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/10">
-                {[
-                  { feature: "QR Code Check-in", worker: true, company: true },
-                  { feature: "Mobile Time Tracking", worker: true, company: true },
-                  { feature: "Task Assignment View", worker: true, company: true },
-                  { feature: "Basic Activity Log", worker: true, company: true },
-                  { feature: "Real-time Dashboards", worker: false, company: true },
-                  { feature: "Advanced Analytics", worker: false, company: true },
-                  { feature: "Export & Reports", worker: false, company: true },
-                  { feature: "Multi-site Management", worker: false, company: true },
-                  { feature: "Photo Documentation", worker: false, company: true },
-                  { feature: "Compliance Tracking", worker: false, company: true },
-                  { feature: "API Access", worker: false, company: true },
-                  { feature: "Priority Support", worker: false, company: true },
-                ].map((row, idx) => (
-                  <tr key={idx} className="hover:bg-white/5 transition-colors">
-                    <td className="px-6 py-4 text-sm font-medium text-white">{row.feature}</td>
-                    <td className="px-6 py-4 text-center">
-                      {row.worker ? (
-                        <Check className="w-5 h-5 text-[#14cb49] mx-auto" />
-                      ) : (
-                        <X className="w-5 h-5 text-gray-600 mx-auto" />
-                      )}
+              <tbody>
+                {FEATURE_GROUPS.flatMap((group) => [
+                  <tr key={`${group.title}-heading`}>
+                    <td colSpan={4} className="px-0 pb-16 pt-6">
+                      <div className="text-[15px] font-medium leading-[1.2] text-[#f67011] md:text-[17px]">
+                        {group.title}
+                      </div>
                     </td>
-                    <td className="px-6 py-4 text-center bg-[#f67011]/5">
-                      {row.company ? (
-                        <Check className="w-5 h-5 text-[#14cb49] mx-auto" />
-                      ) : (
-                        <X className="w-5 h-5 text-gray-600 mx-auto" />
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                  </tr>,
+                  ...group.rows.map((row) => (
+                    <tr key={`${group.title}-${row.name}`} className="border-b border-white/[0.12]">
+                      <td className="px-0 py-[14px] text-[15px] leading-[1.3] text-[#d8d8d8] md:text-[16px]">
+                        {row.name}
+                      </td>
+                      <td className="px-5 py-[14px] text-center align-middle">
+                        {renderFeatureValue(row.free)}
+                      </td>
+                      <td className="px-5 py-[14px] text-center align-middle">
+                        {renderFeatureValue(row.pro)}
+                      </td>
+                      <td className="px-5 py-[14px] text-center align-middle">
+                        {renderFeatureValue(row.enterprise)}
+                      </td>
+                    </tr>
+                  )),
+                ])}
               </tbody>
             </table>
           </motion.div>

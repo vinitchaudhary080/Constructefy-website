@@ -9,16 +9,8 @@ import imgFrame1984079031 from "@/app/assets/5443a299bbcacbe5a06e06cdda6cb138ec6
 import imgFrame1984079032 from "@/app/assets/ca26cd112778214e0b970083590aae98e0c08b8b.png";
 import imgFrame1984079033 from "@/app/assets/bba16641a22c0f6213fdb6e6bf31ef140695958a.png";
 import imgScaleImage from "@/app/assets/e4d87e0dfd7102b1c760f168040652be29c9e9ff.png";
-import imgAvatarEthan from "@/app/assets/7c099c24b314556510391c6f89bf13ae86ef4208.png";
-import imgAvatarAva from "@/app/assets/faa7c28468f622ca6432913bd1b338d851ee939e.png";
-import imgAvatarSophia from "@/app/assets/818fa522f3c02b93a112715072de5246be375218.png";
-import imgAvatarLiam from "@/app/assets/cacb6081eac5d6dab43f57b4174221e6adc14554.png";
-import imgAvatarMia from "@/app/assets/55005efb2c0a8148957acdca0762857e70adcdad.png";
-import imgAvatarNoah from "@/app/assets/5aced9fa5db548b1152229fa76dfe97d0de95c61.png";
-import imgAvatarOlivia from "@/app/assets/e19ec47d8c3bc36d2dbc984e34d0e2303acb7679.png";
-import imgAvatarJames from "@/app/assets/d3a3a61e7bcb246d44c4f15304f086184f3d28b1.png";
-import imgAvatarIsabella from "@/app/assets/eb9176ec4d22f2f19fdfba8299634ecb145e1036.png";
 import svgPathsLogo from "../../imports/svg-ucars7i5iv";
+import { TestimonialsSection } from "../components/TestimonialsSection";
 
 export default function SolutionsPage() {
   const [activeTab, setActiveTab] = useState<'small' | 'mid' | 'large'>('small');
@@ -377,7 +369,7 @@ export default function SolutionsPage() {
                   {/* Three Icon Features */}
                   <div className="flex flex-col sm:flex-row gap-6 sm:gap-9">
                     {/* Feature 1 */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <path d="M11.375 11.375V22.75" stroke="url(#paint0_linear_icon1)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" />
@@ -399,13 +391,13 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Live plan-linked dashboards
                       </p>
                     </div>
 
                     {/* Feature 2 */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <path d={svgPaths.p3587c200} fill="url(#paint0_linear_icon2)" />
@@ -427,13 +419,13 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Area-based workforce tracking
                       </p>
                     </div>
 
                     {/* Feature 3 */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <path d={svgPaths.p33a57300} stroke="url(#paint0_linear_icon3)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" />
@@ -475,7 +467,7 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Photo-backed execution proof
                       </p>
                     </div>
@@ -524,7 +516,7 @@ export default function SolutionsPage() {
                   {/* Three Icon Features */}
                   <div className="flex flex-col sm:flex-row gap-6 sm:gap-9">
                     {/* Feature 1 - Plan-linked task instructions */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <g clipPath="url(#clip0_engineers_1)">
@@ -551,13 +543,13 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Plan-linked task instructions
                       </p>
                     </div>
 
                     {/* Feature 2 - Area-wise execution tracking */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <g clipPath="url(#clip0_engineers_2)">
@@ -584,13 +576,13 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Area-wise execution tracking
                       </p>
                     </div>
 
                     {/* Feature 3 - On-site photo updates */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <g clipPath="url(#clip0_engineers_3)">
@@ -637,7 +629,7 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         On-site photo updates
                       </p>
                     </div>
@@ -699,7 +691,7 @@ export default function SolutionsPage() {
               {/* Right - Content */}
               <div className="flex-1 flex flex-col gap-16 lg:gap-[100px]">
                 {/* Description */}
-                <div className="flex items-center justify-center px-4">
+                <div className="px-4">
                   <p className="text-[20px] md:text-[24px] font-medium text-[#6e6e73] leading-[34px] tracking-[-0.4px] max-w-[515px]">
                     Safety officers lack timely visibility into site risks, delayed incident reporting, and reliable safety documentation.
                   </p>
@@ -710,7 +702,7 @@ export default function SolutionsPage() {
                   {/* Three Icon Features */}
                   <div className="flex flex-col sm:flex-row gap-6 sm:gap-9 px-4">
                     {/* Feature 1 - Instant issue reporting from site */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <g clipPath="url(#clip0_safety_1)">
@@ -737,13 +729,13 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Instant issue reporting from site
                       </p>
                     </div>
 
                     {/* Feature 2 - Time-stamped photo evidence */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <g clipPath="url(#clip0_safety_2)">
@@ -770,13 +762,13 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Time-stamped photo evidence
                       </p>
                     </div>
 
                     {/* Feature 3 - Centralized safety records */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <g clipPath="url(#clip0_safety_3)">
@@ -823,7 +815,7 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Centralized safety records
                       </p>
                     </div>
@@ -863,7 +855,7 @@ export default function SolutionsPage() {
               {/* Left - Content */}
               <div className="flex-1 flex flex-col gap-16 lg:gap-[100px] order-2 lg:order-1">
                 {/* Description */}
-                <div className="flex items-center justify-center px-4">
+                <div className="">
                   <p className="text-[20px] md:text-[24px] font-medium text-[#6e6e73] leading-[34px] tracking-[-0.4px] max-w-[515px]">
                     Contractors face labor disputes and payment issues due to missing work proof and fragmented site records.
                   </p>
@@ -872,9 +864,9 @@ export default function SolutionsPage() {
                 {/* Features and Outcome */}
                 <div className="flex flex-col gap-9">
                   {/* Three Icon Features */}
-                  <div className="flex flex-col sm:flex-row gap-6 sm:gap-9 px-4">
+                  <div className="flex flex-col sm:flex-row gap-6 sm:gap-9">
                     {/* Feature 1 - Verified attendance by location */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <g clipPath="url(#clip0_contractors_1)">
@@ -901,13 +893,13 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Verified attendance by location
                       </p>
                     </div>
 
                     {/* Feature 2 - Photo-based proof of work */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <g clipPath="url(#clip0_contractors_2)">
@@ -934,13 +926,13 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Photo-based proof of work
                       </p>
                     </div>
 
                     {/* Feature 3 - Centralized execution visibility */}
-                    <div className="flex flex-col gap-3 w-[150px]">
+                    <div className="flex flex-col gap-3 min-w-[140px] flex-1">
                       <div className="bg-[#262626] rounded-[7.5px] w-11 h-11 flex items-center justify-center">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                           <g clipPath="url(#clip0_contractors_3)">
@@ -987,7 +979,7 @@ export default function SolutionsPage() {
                           </defs>
                         </svg>
                       </div>
-                      <p className="text-base font-semibold text-black tracking-[-0.4px] leading-normal">
+                      <p className="text-sm sm:text-base font-semibold text-black leading-tight whitespace-nowrap sm:whitespace-normal">
                         Centralized execution visibility
                       </p>
                     </div>
@@ -1162,236 +1154,7 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="bg-[#f7f7f7] py-16 md:py-24 lg:py-32 px-4 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 md:mb-16 lg:mb-[72px] max-w-[739px] mx-auto"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-[64px] font-medium text-[#16151a] mb-2.5 leading-[1.1]">
-              Trusted by <span className="text-[#f67011]">construction teams</span> on the ground
-            </h2>
-            <p className="text-base text-[#262626] leading-[22px]">
-              Everything you need to know before bringing Constructefy to your site.
-            </p>
-          </motion.div>
-
-          {/* Testimonials Grid with Fade Overlay */}
-          <div className="relative">
-            {/* Grid Container */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-[30px] pb-20">
-              {/* Column 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="flex flex-col gap-6 lg:gap-[25px]"
-              >
-                {/* Card 1 */}
-                <div className="bg-[#e8e8e8] rounded-[20px] p-[26px] flex flex-col gap-[30px]">
-                  <p className="text-[18px] text-[#494d4d] leading-[24px]">
-                    For the first time, we have clear visibility into who worked where and for how long. Time disputes have dropped significantly.
-                  </p>
-                  <div className="flex items-center gap-2.5">
-                    <img 
-                      src={imgAvatarEthan} 
-                      alt="Ethan Miller" 
-                      className="w-[50px] h-[50px] rounded-[25px]"
-                    />
-                    <div>
-                      <p className="text-[18px] font-medium text-[#131515] leading-[22px]">Ethan Miller</p>
-                      <p className="text-[14px] text-[#494d4d] leading-normal">Operations Head, EPC Company</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card 2 */}
-                <div className="bg-[#e8e8e8] rounded-[20px] p-[26px] flex flex-col gap-[30px]">
-                  <p className="text-[18px] text-[#494d4d] leading-[24px]">
-                    Audit-ready reports and on-site photo proof have made compliance and client reporting much easier for teams.
-                  </p>
-                  <div className="flex items-center gap-2.5">
-                    <img 
-                      src={imgAvatarAva} 
-                      alt="Ava Rodriguez" 
-                      className="w-[50px] h-[50px] rounded-[25px]"
-                    />
-                    <div>
-                      <p className="text-[18px] font-medium text-[#131515] leading-[22px]">Ava Rodriguez</p>
-                      <p className="text-[14px] text-[#494d4d] leading-normal">Senior Engineer, Real Estate Developer</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card 3 */}
-                <div className="bg-[#e8e8e8] rounded-[20px] p-[26px] flex flex-col gap-[30px]">
-                  <p className="text-[18px] text-[#494d4d] leading-[24px]">
-                    Real-time tracking has dramatically improved our project management, allowing us to allocate resources more effectively.
-                  </p>
-                  <div className="flex items-center gap-2.5">
-                    <img 
-                      src={imgAvatarSophia} 
-                      alt="Sophia Chen" 
-                      className="w-[50px] h-[50px] rounded-[25px]"
-                    />
-                    <div>
-                      <p className="text-[18px] font-medium text-[#131515] leading-[22px]">Sophia Chen</p>
-                      <p className="text-[14px] text-[#494d4d] leading-normal">Project Manager, Construction Firm</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Column 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="flex flex-col gap-6 lg:gap-[25px]"
-              >
-                {/* Card 4 */}
-                <div className="bg-[#e8e8e8] rounded-[20px] p-[26px] flex flex-col gap-[30px]">
-                  <p className="text-[18px] text-[#494d4d] leading-[24px]">
-                    We have streamlined communication between teams, leading to increased efficiency in project execution.
-                  </p>
-                  <div className="flex items-center gap-2.5">
-                    <img 
-                      src={imgAvatarLiam} 
-                      alt="Liam Johnson" 
-                      className="w-[50px] h-[50px] rounded-[25px]"
-                    />
-                    <div>
-                      <p className="text-[18px] font-medium text-[#131515] leading-[22px]">Liam Johnson</p>
-                      <p className="text-[14px] text-[#494d4d] leading-normal">Team Lead, Software Development</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card 5 */}
-                <div className="bg-[#e8e8e8] rounded-[20px] p-[26px] flex flex-col gap-[30px]">
-                  <p className="text-[18px] text-[#494d4d] leading-[24px]">
-                    The integration of automated alerts has minimized delays, ensuring projects stay on schedule.
-                  </p>
-                  <div className="flex items-center gap-2.5">
-                    <img 
-                      src={imgAvatarMia} 
-                      alt="Mia Smith" 
-                      className="w-[50px] h-[50px] rounded-[25px]"
-                    />
-                    <div>
-                      <p className="text-[18px] font-medium text-[#131515] leading-[22px]">Mia Smith</p>
-                      <p className="text-[14px] text-[#494d4d] leading-normal">Product Owner, Tech Startup</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card 6 */}
-                <div className="bg-[#e8e8e8] rounded-[20px] p-[26px] flex flex-col gap-[30px]">
-                  <p className="text-[18px] text-[#494d4d] leading-[24px]">
-                    Enhanced collaboration tools have fostered a culture of innovation and creativity within our teams.
-                  </p>
-                  <div className="flex items-center gap-2.5">
-                    <img 
-                      src={imgAvatarNoah} 
-                      alt="Noah Brown" 
-                      className="w-[50px] h-[50px] rounded-[25px]"
-                    />
-                    <div>
-                      <p className="text-[18px] font-medium text-[#131515] leading-[22px]">Noah Brown</p>
-                      <p className="text-[14px] text-[#494d4d] leading-normal">Design Director, Marketing Agency</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Column 3 */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="flex flex-col gap-6 lg:gap-[25px]"
-              >
-                {/* Card 7 */}
-                <div className="bg-[#e8e8e8] rounded-[20px] p-[26px] flex flex-col gap-[30px]">
-                  <p className="text-[18px] text-[#494d4d] leading-[24px]">
-                    Our improved data analytics have provided insights that help us anticipate challenges before they arise.
-                  </p>
-                  <div className="flex items-center gap-2.5">
-                    <img 
-                      src={imgAvatarOlivia} 
-                      alt="Olivia Davis" 
-                      className="w-[50px] h-[50px] rounded-[25px]"
-                    />
-                    <div>
-                      <p className="text-[18px] font-medium text-[#131515] leading-[22px]">Olivia Davis</p>
-                      <p className="text-[14px] text-[#494d4d] leading-normal">Analytics Manager, Financial Services</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card 8 */}
-                <div className="bg-[#e8e8e8] rounded-[20px] p-[26px] flex flex-col gap-[30px]">
-                  <p className="text-[18px] text-[#494d4d] leading-[24px]">
-                    By leveraging predictive modeling, we've increased our strategic planning capabilities significantly.
-                  </p>
-                  <div className="flex items-center gap-2.5">
-                    <img 
-                      src={imgAvatarJames} 
-                      alt="James Wilson" 
-                      className="w-[50px] h-[50px] rounded-[25px]"
-                    />
-                    <div>
-                      <p className="text-[18px] font-medium text-[#131515] leading-[22px]">James Wilson</p>
-                      <p className="text-[14px] text-[#494d4d] leading-normal">Chief Strategy Officer, Consulting Firm</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card 9 */}
-                <div className="bg-[#e8e8e8] rounded-[20px] p-[26px] flex flex-col gap-[30px]">
-                  <p className="text-[18px] text-[#494d4d] leading-[24px]">
-                    This shift has empowered our teams to make proactive decisions that enhance overall performance.
-                  </p>
-                  <div className="flex items-center gap-2.5">
-                    <img 
-                      src={imgAvatarIsabella} 
-                      alt="Isabella Martinez" 
-                      className="w-[50px] h-[50px] rounded-[25px]"
-                    />
-                    <div>
-                      <p className="text-[18px] font-medium text-[#131515] leading-[22px]">Isabella Martinez</p>
-                      <p className="text-[14px] text-[#494d4d] leading-normal">Senior Analyst, Market Research Firm</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Bottom Blur Overlay */}
-            <div 
-              className="absolute bottom-0 left-0 right-0 h-[163px] pointer-events-none"
-              style={{ 
-                background: 'linear-gradient(180deg, rgba(247, 247, 247, 0) 0%, rgba(247, 247, 247, 1) 100%)',
-                backdropFilter: 'blur(32px)'
-              }}
-            />
-
-            {/* CTA Button */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10">
-              <button className="bg-[#1c1b20] text-white text-base font-medium px-[34px] py-4 rounded-[100px] hover:bg-[#2a2930] transition-colors whitespace-nowrap">
-                View Success Stories
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
 
       {/* FAQ Section */}
       <section className="bg-[#f7f7f7] py-12 md:py-16 lg:py-[70px] px-4 relative overflow-hidden">
