@@ -1,17 +1,29 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import svgPaths from "../../imports/svg-54q0yju2ut";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router";
 
 export function Navbar() {
   const location = useLocation();
   const isContactPage = ["/contact", "/support", "/help-center", "/support-help-center"].includes(location.pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [productMenuOpen, setProductMenuOpen] = useState(false);
+  const [mobileProductMenuOpen, setMobileProductMenuOpen] = useState(false);
+  const productMenuRef = useRef<HTMLDivElement | null>(null);
+
+  const productOptions = useMemo(
+    () => [
+      { label: "Workforce Overview", to: "/solutions" },
+      { label: "Site Automation", to: "/how-it-works" },
+      { label: "Smart Pricing", to: "/pricing" },
+      { label: "Support Tools", to: "/contact" },
+    ],
+    [],
+  );
 
   const navLinks = useMemo(
     () => [
-      { label: "Product", to: "/solutions" },
       { label: "Solutions", to: "/solutions" },
       { label: "How It Works", to: "/how-it-works" },
       { label: "Pricing", to: "/pricing" },
@@ -23,6 +35,8 @@ export function Navbar() {
 
   useEffect(() => {
     setMobileOpen(false);
+    setProductMenuOpen(false);
+    setMobileProductMenuOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -47,6 +61,24 @@ export function Navbar() {
       window.removeEventListener("keydown", handleEscape);
     };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!productMenuOpen) {
+      return;
+    }
+
+    const handlePointerDown = (event: MouseEvent) => {
+      if (!productMenuRef.current?.contains(event.target as Node)) {
+        setProductMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("mousedown", handlePointerDown);
+
+    return () => {
+      window.removeEventListener("mousedown", handlePointerDown);
+    };
+  }, [productMenuOpen]);
 
   const overlayVariants = {
     hidden: { opacity: 0 },
@@ -112,6 +144,46 @@ export function Navbar() {
         </Link>
 
         <div className="hidden lg:flex items-center gap-8 text-sm text-white/80">
+          <div className="relative" ref={productMenuRef}>
+            <button
+              type="button"
+              onClick={() => setProductMenuOpen((open) => !open)}
+              className={`flex items-center gap-1.5 transition-colors hover:text-white ${
+                productMenuOpen ? "text-white font-medium" : ""
+              }`}
+              aria-expanded={productMenuOpen}
+              aria-haspopup="menu"
+            >
+              <span>Product</span>
+              <ChevronDown
+                className={`h-4 w-4 transition-transform ${productMenuOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            <AnimatePresence>
+              {productMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className="absolute left-0 top-full mt-4 min-w-[220px] rounded-2xl border border-white/10 bg-[#1a1d1d] p-2 shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
+                >
+                  {productOptions.map((option) => (
+                    <Link
+                      key={option.label}
+                      to={option.to}
+                      onClick={() => setProductMenuOpen(false)}
+                      className="block rounded-xl px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+                    >
+                      {option.label}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           {navLinks.map((link) => {
             const isActive =
               link.to === "/contact"
@@ -190,6 +262,51 @@ export function Navbar() {
               <motion.div
                 className="mt-3 flex flex-col"
               >
+                <motion.div variants={itemVariants}>
+                  <button
+                    type="button"
+                    onClick={() => setMobileProductMenuOpen((open) => !open)}
+                    className="flex w-full items-center justify-between py-2 text-left text-[2.1rem] font-semibold leading-[1.16] tracking-[-0.03em] text-[#1d1d1f] opacity-80 transition-colors hover:opacity-100"
+                    style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif' }}
+                    aria-expanded={mobileProductMenuOpen}
+                    aria-controls="mobile-product-menu"
+                  >
+                    <span>Product</span>
+                    <ChevronDown
+                      className={`h-7 w-7 transition-transform ${mobileProductMenuOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                </motion.div>
+
+                <AnimatePresence initial={false}>
+                  {mobileProductMenuOpen && (
+                    <motion.div
+                      id="mobile-product-menu"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="overflow-hidden pl-1"
+                    >
+                      <div className="flex flex-col gap-3 pb-4 pt-2">
+                        {productOptions.map((option) => (
+                          <Link
+                            key={option.label}
+                            to={option.to}
+                            onClick={() => {
+                              setMobileProductMenuOpen(false);
+                              setMobileOpen(false);
+                            }}
+                            className="text-lg font-medium text-[#1d1d1f]/70 transition-colors hover:text-[#1d1d1f]"
+                          >
+                            {option.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 {navLinks.map((link) => {
                   const isActive =
                     link.to === "/contact"
